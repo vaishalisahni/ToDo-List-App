@@ -21,7 +21,7 @@ main{
     display: flex;
     padding: 24px;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 .todo{
@@ -159,4 +159,42 @@ button:active{
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+@media (max-width: 768px) {
+    .todo {
+        max-width: 90%;
+    }
+
+    #todo-input {
+        font-size: 12px;
+    }
+
+    .save-btn,
+    .cancel-btn {
+        padding: 4px 8px;
+    }
+
+    .btn {
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 16px;
+    }
+
+    .todo {
+        padding: 12px;
+    }
+
+    .save-btn,
+    .cancel-btn {
+        font-size: 12px;
+    }
+
+    .btns {
+        flex-direction: column;
+        gap: 5px;
+    }
 }
