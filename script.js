@@ -58,6 +58,7 @@ function startTodoListApp() {
 
             const save=document.createElement("button");
             save.innerText="Save";
+            // save.type="submit";
             save.classList.add("save-btn");
 
             const cancel = document.createElement("button");
@@ -67,6 +68,17 @@ function startTodoListApp() {
             buttonContainer.append(save,cancel);
 
             item.replaceChild(buttonContainer,container);
+            
+            editInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") {
+                    taskLabel.innerText=editInput.value.trim() || label;
+                    item.replaceChild(taskLabel, editInput);
+                    item.replaceChild(container,buttonContainer);
+                    activeEditItem = false;
+                    syncTasks();
+                }
+            });
+            
 
             save.addEventListener("click",()=>{
                 taskLabel.innerText=editInput.value.trim() || label;
