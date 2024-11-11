@@ -94,10 +94,12 @@ function startTodoListApp() {
         if(checkedTask.className.includes("checked")){
             taskLabel.style.textDecoration="line-through";
             checkedTask.src ="assets/checked.svg" ;
+            editTask.style.visibility="hidden";
         }
         else{
             taskLabel.style.textDecoration="none";
             checkedTask.src ="assets/unchecked.svg";
+            editTask.style.visibility="visible";
         }
         checkedTask.alt = "task (un)checked";
         checkedTask.addEventListener("click", () => {
@@ -105,10 +107,12 @@ function startTodoListApp() {
             if(checkedTask.className.includes("checked")){
                 taskLabel.style.textDecoration="line-through";
                 checkedTask.src ="assets/checked.svg" ;
+                editTask.style.visibility="hidden";
             }
             else{
                 taskLabel.style.textDecoration="none";
                 checkedTask.src ="assets/unchecked.svg";
+                editTask.style.visibility="visible";
             }
             syncTasks();
         });
