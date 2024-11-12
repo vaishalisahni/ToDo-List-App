@@ -164,9 +164,20 @@ function startTodoListApp() {
             const status=task.querySelector(".todo-task-status");
             if (!status.classList.contains("checked")) {
                 status.classList.add("checked");
+                // document.querySelector(".todo-task-label").style.textDecoration="line-through";
                 status.src = "assets/checked.svg";
+                // document.querySelector(".todo-task-edit").style.visibility="hidden";
             }
+
         });
+        const labels=document.querySelectorAll(".todo-task-label");
+        labels.forEach(label=>{
+            label.style.textDecoration="line-through";
+        })
+        const edits=document.querySelectorAll(".todo-task-edit");
+        edits.forEach(edit=>{
+            edit.style.visibility="hidden";
+        })
         syncTasks();
     });
 
