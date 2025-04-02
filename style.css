@@ -24,6 +24,16 @@ main{
     justify-content: center;
     align-items: center;
 }
+.todo-header{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+.todo-header img{
+    height: 20px;
+    width: 20px;
+}
 .todo{
     width: 100%;
     max-width: 400px;
