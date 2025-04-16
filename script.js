@@ -45,7 +45,7 @@ function startTodoListApp() {
         const item = document.createElement("li");
         item.classList.add("todo-task");
 
-        const taskContainer=document.createElement("div");
+        const taskContainer = document.createElement("div");
         taskContainer.classList.add("task-container");
 
         const taskLabel = document.createElement("span");
@@ -124,16 +124,27 @@ function startTodoListApp() {
             editTask.style.visibility = "visible";
         }
         checkedTask.alt = "task (un)checked";
+        // Inside your existing code where you handle task checking
         checkedTask.addEventListener("click", () => {
             checkedTask.classList.toggle("checked");
 
             if (checkedTask.classList.contains("checked")) {
                 taskLabel.style.textDecoration = "line-through";
+
+                // Get the ::before background color for this task
+                const computedStyle = window.getComputedStyle(item, '::before');
+                const beforeBgColor = computedStyle.getPropertyValue('background-color');
+
+                // Apply the same color to the text-decoration
+                taskLabel.style.textDecorationColor = beforeBgColor;
+                taskLabel.style.textDecorationThickness = "2px";
+
                 checkedTask.src = "assets/checked.svg";
                 editTask.style.visibility = "hidden";
             }
             else {
                 taskLabel.style.textDecoration = "none";
+                taskLabel.style.textDecorationColor = ""; // Reset decoration color
                 checkedTask.src = "assets/unchecked.svg";
                 editTask.style.visibility = "visible";
             }
@@ -163,7 +174,7 @@ function startTodoListApp() {
             if (deadline && new Date(deadline) < new Date()) {
                 deadlineElement.classList.add('overdue');
             }
-            
+
         } else {
             deadlineElement.innerText = ''; // If there's no deadline, leave it empty
         }
@@ -171,19 +182,19 @@ function startTodoListApp() {
         // Append the elements to the task item
         container.append(editTask, checkedTask, deleteTask);
         taskContainer.append(taskLabel, container);
-        item.append(taskContainer,deadlineElement); // This places the deadline on a new line
+        item.append(taskContainer, deadlineElement); // This places the deadline on a new line
         list.append(item);
 
         sortTasksByDeadline();
         syncTasks();
 
         updateMessageBox();
-        
+
     }
 
     // Load previous tasks from local storage
     const previousTasks = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")) : [];
-    previousTasks.forEach((task) => addTasks(task.label, task.checked,task.deadline));
+    previousTasks.forEach((task) => addTasks(task.label, task.checked, task.deadline));
     updateMessageBox();
 
     // reset
@@ -246,7 +257,7 @@ function startTodoListApp() {
             const dateB = new Date(b.querySelector(".todo-task-deadline").innerText.split(" ")[1]);
             return dateA - dateB;  // Ascending order
         });
-    
+
         // Re-render the sorted tasks
         list.innerHTML = "";
         tasks.forEach(task => list.appendChild(task));
