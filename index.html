@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To-do list</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,10 +11,11 @@
         <div class="todo">
             <div class="todo-header">
                 <h2 style="font-weight:bold;">ToDo List</h2>
-                <img src="assets/todo.svg" alt="">
+                <img src="assets/todo.svg" alt="Todo icon">
             </div>
             <form id="todo-form">
                 <input id="todo-input" type="text" placeholder="Add a new task" >
+                <input id="task-deadline" type="date" placeholder="Deadline" title="Choose a deadline">
                 <button id="todo-button" type="submit" >
                     <img src="assets\add.svg" alt="add task">
                 </button>
@@ -22,6 +23,7 @@
             <ul id="todo-list">
                 <!-- tasks are added here -->
             </ul>
+            <div class="message-box"></div>
         </div>
         <div class="btns">
             <button class="btn check-all" id="check-all">
